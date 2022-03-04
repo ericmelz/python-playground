@@ -14,6 +14,28 @@ def base_convert(num, base):
     return ''.join(reversed(digits))
 
 
+SYMBOLS = [str(i) for i in range(10)] + \
+    [chr(i) for i in range(ord('A'), ord('Z')+1)] + \
+    [chr(i) for i in range(ord('a'), ord('z')+1)] + \
+    ['-', '_']
+
+
+def num_to_symbol(num):
+    return SYMBOLS[num]
+
+
+def base64(num):
+    if num == 0:
+        return '0'
+    digits = []
+    mask = 63
+    while num > 0:
+        digit = num & mask
+        digits.append(num_to_symbol(digit))
+        num >>= 6
+    return ''.join(reversed(digits))
+
+
 def test1():
     print(f'Test1: {base_convert(15, 2)}')
 
@@ -34,12 +56,18 @@ def test5():
     print(f'Test5: {base_convert(23, 7)}')
 
 
+def test6():
+    # 1.2 trillion => 7 base64 digits
+    print(f'Test5: {base64(1_234_567_890_123)}')
+
+
 if __name__ == '__main__':
     test1()
     test2()
     test3()
     test4()
     test5()
+    test6()
 
 
 """
