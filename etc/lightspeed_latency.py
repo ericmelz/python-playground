@@ -17,5 +17,12 @@ def la_to_oregon():
     print(f'Roundtrip time from la to oregon: {time}')
 
 
+def la_to_virginia():
+    mi = 2522
+    time = lightspeed_latency(mi)
+    print(f'Roundtrip time from la to virginia: {time}')
+
+
 if __name__ == '__main__':
     la_to_oregon()
+    la_to_virginia()
